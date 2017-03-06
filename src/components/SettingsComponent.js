@@ -10,7 +10,7 @@ require('styles//Settings.css');
 
 class SettingsComponent extends React.Component {
   render() {
-    return (
+    /*return (
       <div className="settings-component">
         <div className="ms-Grid">
           <div className="ms-Grid-row">
@@ -18,6 +18,22 @@ class SettingsComponent extends React.Component {
               <VizConfigurationComponent />
             </div>
             <div className="ms-Grid-col ms-u-sm6 ms-u-md8 ms-u-lg8">B</div>
+          </div>
+        </div>
+        <div className="footer-wrapper">
+          <SettingsBottomBarComponent />
+        </div>
+      </div>
+    );*/
+
+    return (
+      <div className="settings-component">
+        <div className="">
+          <div className="">
+            <div className="configuration">
+              <VizConfigurationComponent />
+            </div>
+            <div className="preview">B</div>
           </div>
         </div>
         <div className="footer-wrapper">

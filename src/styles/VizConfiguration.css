@@ -1,5 +1,6 @@
 .vizconfiguration-component {
-  overflow-y: scroll;
+  padding: 12px;
+  /*overflow-y: scroll;
   height: calc(100% - 50px);
-  position: relative;
+  position: relative;*/
 }
