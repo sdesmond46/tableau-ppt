@@ -11,7 +11,7 @@ require('styles//Settings.css');
 class SettingsComponent extends React.Component {
   render() {
     return (
-      <div className="settings-component ms-navigation-dialog">
+      <div className="settings-component">
         <div className="ms-Grid">
           <div className="ms-Grid-row">
             <div className="ms-Grid-col ms-u-sm6 ms-u-md4 ms-u-4">
@@ -19,12 +19,9 @@ class SettingsComponent extends React.Component {
             </div>
             <div className="ms-Grid-col ms-u-sm6 ms-u-md8 ms-u-lg8">B</div>
           </div>
-          <DialogFooter>
-            <SettingsBottomBarComponent />
-          </DialogFooter>
-          {/*<div className="ms-Grid-row">
-            <SettingsBottomBarComponent />
-          </div>*/}
+        </div>
+        <div className="footer-wrapper">
+          <SettingsBottomBarComponent />
         </div>
       </div>
     );

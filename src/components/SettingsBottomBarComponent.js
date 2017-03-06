@@ -7,10 +7,12 @@ require('styles//SettingsBottomBar.css');
 
 class SettingsBottomBarComponent extends React.Component {
   render() {
-    return (
+        return (
       <div className='settingsbottombar-component'>
-        <PrimaryButton className='ms-Dialog-action'>OK</PrimaryButton>
-        <DefaultButton className='ms-Dialog-action'>Cancel</DefaultButton>
+          <span className=''>
+              <PrimaryButton>OK</PrimaryButton>
+              <DefaultButton>Cancel</DefaultButton>
+          </span>
       </div>
     );
   }
