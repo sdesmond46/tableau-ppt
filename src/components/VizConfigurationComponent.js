@@ -4,6 +4,7 @@ import React from 'react';
 import { TextField } from 'office-ui-fabric-react/lib-amd/TextField'
 import { Checkbox } from 'office-ui-fabric-react/lib-amd/Checkbox'
 
+import * as StateUtils from '../utils/StateUtils';
 import * as TabUtils from 'react-tableau-viz/src/TableauUtils';
 
 require('styles//VizConfiguration.css');
@@ -17,10 +18,15 @@ class VizConfigurationComponent extends React.Component {
     }, props.vizConfig);
   }
 
+  _onStateChange() {
+    const vizConfig = StateUtils.TakeVizConfigProps(this.state);
+    this.props.configChanged(vizConfig);
+  }
+
   _textChanged(propName, value) {
     let newState = {};
     newState[propName] = value;
-    this.setState(newState);
+    this.setState(newState, this._onStateChange.bind(this));
   }
 
   _makeTextField(label, name) {
@@ -30,7 +36,7 @@ class VizConfigurationComponent extends React.Component {
   _checkboxChange(propName, box, value) {
     let newState = {};
     newState[propName] = value;
-    this.setState(newState);
+    this.setState(newState, this._onStateChange.bind(this));
   }
 
   _makeCheckbox(label, name) {
@@ -38,8 +44,14 @@ class VizConfigurationComponent extends React.Component {
   }
 
   _urlChanged(value) {
-    let newUrl = TabUtils.ParseTableauUrl(value, window.document);
-    this.setState(newUrl);
+    try {
+      let newUrl = TabUtils.ParseTableauUrl(value, window.document);
+      this.setState(newUrl, this._onStateChange.bind(this));
+    } catch (e) {
+      console.log(e);
+      this.setState(StateUtils.DefaultVizConfig(), this._onStateChange.bind(this));
+    }
+    
   }
 
   render() {
@@ -72,16 +84,8 @@ VizConfigurationComponent.displayName = 'VizConfigurationComponent';
 // Uncomment properties you need
 // VizConfigurationComponent.propTypes = {};
 VizConfigurationComponent.defaultProps = {
-  vizConfig: {
-    'sanitizedUrl': '',
-    'server': '',
-    'site': '',
-    'workbook': '',
-    'view': '',
-    'customView': '',
-    'showTabs': false,
-    'showToolbar': false
-  }
+  vizConfig: StateUtils.DefaultVizConfig(),
+  configChanged : (newConfig) => {}
 };
 
 export default VizConfigurationComponent;

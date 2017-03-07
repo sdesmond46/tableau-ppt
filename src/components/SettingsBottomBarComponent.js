@@ -10,7 +10,7 @@ class SettingsBottomBarComponent extends React.Component {
         return (
       <div className='settingsbottombar-component'>
           <span className=''>
-              <PrimaryButton>OK</PrimaryButton>
+              <PrimaryButton disabled={!this.props.isEnabled}>OK</PrimaryButton>
               <DefaultButton>Cancel</DefaultButton>
           </span>
       </div>
@@ -22,6 +22,8 @@ SettingsBottomBarComponent.displayName = 'SettingsBottomBarComponent';
 
 // Uncomment properties you need
 // SettingsBottomBarComponent.propTypes = {};
-// SettingsBottomBarComponent.defaultProps = {};
+SettingsBottomBarComponent.defaultProps = {
+  isEnabled: false
+};
 
 export default SettingsBottomBarComponent;
