@@ -31,7 +31,7 @@ class VizPreviewComponent extends React.Component {
     let viz = null;
     const { vizConfig, isEnabled } = this.props;
     if (this.state.showViz && isEnabled && vizConfig.sanitizedUrl) {
-      viz = <TableauVizReact url={vizConfig.sanitizedUrl} width='100%' height='100%'/>
+      viz = <TableauVizReact url={vizConfig.sanitizedUrl} width='100%' height='100%' hideTabs={!vizConfig.showTabs} hideToolbar={!vizConfig.showToolbar}/>
     }
 
     return (
