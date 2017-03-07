@@ -7,15 +7,16 @@ const ValidateVizConfig = (vizConfig) => {
 
 const TakeVizConfigProps = (vizConfig) => {
   var result = {};
-  for (const prop of vizConfigProps) {
-    result[prop] = vizConfig[prop];
+  for (const i in vizConfigProps) {
+    const prop = vizConfigProps[i];
+    result[prop] = vizConfig.hasOwnProperty(prop) ? vizConfig[prop] : undefined;
   }
 
   return result;
 }
 
 const DefaultVizConfig = () => {
-  return { 
+  return {
     'sanitizedUrl': '',
     'server': '',
     'site': '',

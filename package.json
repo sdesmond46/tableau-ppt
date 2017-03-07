@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
-    "dist": "npm run copy & webpack --env=dist",
+    "copy-test": "copyfiles -u 1 ./dist/* ./dist/assets/* C:\\Users\\sdesmond\\Documents\\GitHub\\TableauOfficeApp\\TableauOfficeAppWeb\\React",
+    "dist": "npm run copy & webpack --env=dist & npm run copy-test",
     "lint": "eslint ./src",
     "posttest": "npm run lint",
     "release:major": "npm version major && npm publish && git push --follow-tags",
@@ -63,10 +64,12 @@
   },
   "dependencies": {
     "core-js": "^2.0.0",
+    "es6-symbol": "^3.1.0",
     "normalize.css": "^4.0.0",
     "office-ui-fabric-react": "^1.14.1",
+    "postscribe": "^2.0.8",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
-    "react-tableau-viz": "^1.0.5"
+    "react-tableau-viz": "^1.0.7"
   }
 }

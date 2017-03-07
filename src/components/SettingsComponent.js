@@ -25,10 +25,10 @@ class SettingsComponent extends React.Component {
   render() {
     return (
       <div className="settings-component">
-        <div className="">
-          <div className="">
+        <div>
+          <div>
             <div className="configuration mainPanel">
-              <VizConfigurationComponent vizConfig={this.state.currentConfig} configChanged={this._onVizConfigurationChanged.bind(this)} />
+              <VizConfigurationComponent key='comp' vizConfig={this.state.currentConfig} configChanged={this._onVizConfigurationChanged.bind(this)} />
             </div>
             <div className="divider mainPanel"></div>
             <div className="preview mainPanel">

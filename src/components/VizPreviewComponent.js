@@ -1,7 +1,8 @@
 'use strict';
 
 import React from 'react';
-import TableauVizReact from 'react-tableau-viz/src/TableauVizReact';
+// import TableauVizReact from 'react-tableau-viz/src/TableauVizReact';
+import TableauVizReact from '../react-tableau-viz/TableauVizReact';
 import { CommandButton } from 'office-ui-fabric-react/lib-amd/Button';
 
 require('styles//VizPreview.css');
@@ -37,7 +38,7 @@ class VizPreviewComponent extends React.Component {
       <div className="vizpreview-component">
         <div className='preview-container'>
           <CommandButton icon='Sync' disabled={ !this.props.isEnabled } onClick={this._previewClicked.bind(this)}>
-            Preview
+            {'Preview'}
           </CommandButton>
         </div>
         <div className='vizPreviewContainer'>
