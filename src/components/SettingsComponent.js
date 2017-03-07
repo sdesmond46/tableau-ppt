@@ -5,6 +5,7 @@ import VizConfigurationComponent from './VizConfigurationComponent.js';
 import SettingsBottomBarComponent from './SettingsBottomBarComponent.js';
 import VizPreviewComponent from './VizPreviewComponent.js';
 import * as StateUtils from '../utils/StateUtils';
+import * as OfficeUtils from '../utils/OfficeUtils'
 
 require('styles//Settings.css');
 
@@ -22,6 +23,16 @@ class SettingsComponent extends React.Component {
     this.setState({validConfig: validConfig, currentConfig: vizConfig});
   }
 
+  _onOkClicked() {
+    OfficeUtils.SaveSetting('vizConfig', this.state.currentConfig, () => {
+      OfficeUtils.CloseDialog();
+    });
+  }
+
+  _onCancelClicked() {
+
+  }
+
   render() {
     return (
       <div className="settings-component">
@@ -37,7 +48,7 @@ class SettingsComponent extends React.Component {
           </div>
         </div>
         <div className="footer-wrapper">
-          <SettingsBottomBarComponent isEnabled={this.state.validConfig}/>
+          <SettingsBottomBarComponent okClicked={this._onOkClicked.bind(this)} cancelClicked={this._onCancelClicked.bind(this)} isEnabled={this.state.validConfig}/>
         </div>
       </div>
     );

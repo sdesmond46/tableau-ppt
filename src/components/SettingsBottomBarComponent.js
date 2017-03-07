@@ -10,8 +10,8 @@ class SettingsBottomBarComponent extends React.Component {
         return (
       <div className='settingsbottombar-component'>
           <span className=''>
-              <PrimaryButton disabled={!this.props.isEnabled}>{'OK'}</PrimaryButton>
-              <DefaultButton>{'Cancel'}</DefaultButton>
+              <PrimaryButton onClick={this.props.okClicked} disabled={!this.props.isEnabled}>{'OK'}</PrimaryButton>
+              <DefaultButton onClick={this.props.cancelClicked} >{'Cancel'}</DefaultButton>
           </span>
       </div>
     );

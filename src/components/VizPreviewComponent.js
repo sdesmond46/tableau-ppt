@@ -1,8 +1,7 @@
 'use strict';
 
 import React from 'react';
-// import TableauVizReact from 'react-tableau-viz/src/TableauVizReact';
-import TableauVizReact from '../react-tableau-viz/TableauVizReact';
+import FullSizeVizComponent from './FullSizeVizComponent';
 import { CommandButton } from 'office-ui-fabric-react/lib-amd/Button';
 
 require('styles//VizPreview.css');
@@ -28,12 +27,7 @@ class VizPreviewComponent extends React.Component {
   }
 
   render() {
-    let viz = null;
     const { vizConfig, isEnabled } = this.props;
-    if (this.state.showViz && isEnabled && vizConfig.sanitizedUrl) {
-      viz = <TableauVizReact url={vizConfig.sanitizedUrl} width='100%' height='100%' hideTabs={!vizConfig.showTabs} hideToolbar={!vizConfig.showToolbar}/>
-    }
-
     return (
       <div className="vizpreview-component">
         <div className='preview-container'>
@@ -42,7 +36,7 @@ class VizPreviewComponent extends React.Component {
           </CommandButton>
         </div>
         <div className='vizPreviewContainer'>
-          {viz}
+          <FullSizeVizComponent isEnabled={this.state.showViz && isEnabled} vizConfig={vizConfig} />
         </div>
       </div>
     );
