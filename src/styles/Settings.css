@@ -23,16 +23,22 @@ body {
   text-align: right;
 }
 
+.mainPanel {
+  float: left;
+  height: calc(100vh - 50px);
+}
+
 .configuration {
   width: 40%;
-  height: calc(100vh - 50px);
   overflow: auto;
-  float: left;
 }
 
 .preview {
-  float: left;
-  width: 60%;
-  background-color: red;
-  height: calc(100vh - 50px);
+  width: calc(60% - 1px);
+  /*overflow: auto;*/
+}
+
+.divider {
+  width:1px;
+  background-color: lightgray;
 }

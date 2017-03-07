@@ -1,0 +1,21 @@
+.vizpreview-component {
+  height: 100%;
+}
+
+.preview-container {
+  height: 40px;
+  border-bottom: 1px;
+  border-bottom-color: lightgray;
+  border-bottom-style: solid;
+}
+
+.vizPreviewContainer {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 41px);
+}
+
+#vizContainer {
+  height: 100%;
+  width: 100%;
+}
