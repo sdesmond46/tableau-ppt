@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { PrimaryButton, DefaultButton, IButtonProps } from 'office-ui-fabric-react/lib-amd/Button';
+import { PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib-amd/Button';
 
 require('styles//SettingsBottomBar.css');
 

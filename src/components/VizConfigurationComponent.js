@@ -4,6 +4,8 @@ import React from 'react';
 import { TextField } from 'office-ui-fabric-react/lib-amd/TextField'
 import { Checkbox } from 'office-ui-fabric-react/lib-amd/Checkbox'
 
+import * as TabUtils from 'react-tableau-viz/src/TableauUtils';
+
 require('styles//VizConfiguration.css');
 
 class VizConfigurationComponent extends React.Component {
@@ -35,13 +37,18 @@ class VizConfigurationComponent extends React.Component {
     return (<Checkbox label={label} checked={!!this.state[name]} onChange={this._checkboxChange.bind(this, name)}/>);
   }
 
+  _urlChanged(value) {
+    let newUrl = TabUtils.ParseTableauUrl(value, window.document);
+    this.setState(newUrl);
+  }
+
   render() {
     return (
       <div className="vizconfiguration-component">
         <div>
           <div className='requiredValues'>
-            <TextField label='Viz Url' required={ true } />
-            <TextField label='Normalized Url' disabled={ true } />
+            <TextField label='Viz Url' required={ true } onChanged={this._urlChanged.bind(this)}/>
+            <TextField label='Normalized Url' disabled={ true } value={this.state.sanitizedUrl} />
           </div>
           <div className='advancedValues'>
             {this._makeTextField('Server', 'server')}
@@ -66,6 +73,7 @@ VizConfigurationComponent.displayName = 'VizConfigurationComponent';
 // VizConfigurationComponent.propTypes = {};
 VizConfigurationComponent.defaultProps = {
   vizConfig: {
+    'sanitizedUrl': '',
     'server': '',
     'site': '',
     'workbook': '',

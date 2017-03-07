@@ -66,6 +66,7 @@
     "normalize.css": "^4.0.0",
     "office-ui-fabric-react": "^1.14.1",
     "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "react-dom": "^15.0.0",
+    "react-tableau-viz": "^1.0.2"
   }
 }
