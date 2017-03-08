@@ -25,6 +25,7 @@ class SettingsComponent extends React.Component {
 
   _onOkClicked() {
     OfficeUtils.SaveSetting('vizConfig', this.state.currentConfig, () => {
+      OfficeUtils.CloseDialog();
     });
   }
 

@@ -20,7 +20,7 @@ class AppComponent extends React.Component {
     window.onhashchange = function() {
       this.setState({
         currentPage : this._getCurrentPage()
-      });
+      }, this._doneWaitingForOffice.bind(this));
     }.bind(this);
 
     // We need to initialize office and let it know we are an add-in

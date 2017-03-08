@@ -38,8 +38,18 @@ class ToolbarComponent extends React.Component {
       ]
     };
 
-    document.addEventListener('mouseover', this._mouseEvent.bind(this, true));
-    document.addEventListener('mouseout', this._mouseEvent.bind(this, false));
+    this.enterEvent = this._mouseEvent.bind(this, true);
+    this.leaveEvent = this._mouseEvent.bind(this, false);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mouseover', this.enterEvent);
+    document.addEventListener('mouseout', this.leaveEvent);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mouseover', this.enterEvent);
+    document.removeEventListener('mouseout', this.leaveEvent);
   }
 
   _mouseEvent(isOver, mouseEvent) {
