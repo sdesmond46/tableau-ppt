@@ -5,6 +5,10 @@ const RunningInOffice = () => {
   return !val;
 }
 
+const MarkAsMock = () => {
+  Cookies.set('mockOffice', true);
+}
+
 const LoadSetting = (key) => {
   let val = '';
   if (RunningInOffice() && Office.context.document) {
@@ -76,6 +80,10 @@ const HandleSettingsMessage = (closeDialogFn, cb, msgEvent) => {
 }
 
 const ShowSettingsOffice = (cb) => {
+  // Step one for this is to actually write out the current vizConfig to a cookie for settings to find it
+  const valString = JSON.stringify(LoadSetting('vizConfig'));
+  Cookies.set('vizConfig', valString);
+
   const settingsUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "#settings";
   const targetHeight = 700;
   const targetWidth = 550;
@@ -97,9 +105,9 @@ const ShowSettingsOffice = (cb) => {
 const ShowSettingsBrowser = (cb) => {
   const settingsUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "#settings";
   let settingsWindow = window.open(settingsUrl, '_blank', 'height=600,width=800');
-  settingsWindow.onmessage = HandleSettingsMessage.bind(null, () => {
+  settingsWindow.addEventListener('message', HandleSettingsMessage.bind(null, () => {
     settingsWindow.close();
-  }, cb);
+  }, cb));
 }
 
 const ShowSettings = (cb) => {
@@ -110,4 +118,4 @@ const ShowSettings = (cb) => {
   }
 }
 
-export { RunningInOffice, LoadSetting, SaveSetting, CloseDialog, ShowSettings }
+export { RunningInOffice, MarkAsMock, LoadSetting, SaveSetting, CloseDialog, ShowSettings }

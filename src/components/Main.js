@@ -56,7 +56,7 @@ class AppComponent extends React.Component {
 
   render() {
     if (this.state.waitingForOffice) {
-      return (<h1>Waiting for Office to Initialize</h1>)
+      return (<button onClick={OfficeUtils.MarkAsMock}>Set up Dev</button>)
     }
 
     const vizConfig = this.state.vizConfig;

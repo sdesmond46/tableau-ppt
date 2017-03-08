@@ -28,9 +28,13 @@ constructor(props) {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.url != this.props.url) {
+		if (nextProps.url != this.props.url ||
+		nextProps.hideTabs != this.props.hideTabs ||
+		nextProps.hideToolbar != this.props.hideToolbar) {
 			this._tryInitViz(nextProps.url);
 		}
+
+
 	}
 
 	render () {
@@ -57,6 +61,10 @@ constructor(props) {
 				this.props.onFirstInteractive(e);
 			}
 		}.bind(this);
+
+		if (!result.hideToolbar) {
+			result.toolbarPosition = 'top';
+		}
 
 		return result;
 	}
