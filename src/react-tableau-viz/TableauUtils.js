@@ -48,7 +48,6 @@ const ParseTableauUrl = function(vizUrl, doc) {
   }
 
   // Check to see if we have a custom view. if so, it will come in the form of view/<workbook>/<view>/<username>/<customViewName>
-  debugger;
   if (viewIndex + 5 == pathComponents.length) {
       customViewName = pathComponents[viewIndex + 3] + '/' + pathComponents[viewIndex + 4];
   }

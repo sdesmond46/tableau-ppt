@@ -17,6 +17,8 @@ class VizConfigurationComponent extends React.Component {
     this.state = Object.assign({}, {
       initialConfig: Object.assign({}, props.vizConfig)
     }, props.vizConfig);
+
+    this.state.userEnteredUrl = props.vizConfig.sanitizedUrl || '';
   }
 
   _onStateChange() {
@@ -45,14 +47,15 @@ class VizConfigurationComponent extends React.Component {
   }
 
   _urlChanged(value) {
-    try {
-      let newUrl = TabUtils.ParseTableauUrl(value, window.document);
-      this.setState(newUrl, this._onStateChange.bind(this));
-    } catch (e) {
-      console.log(e);
-      this.setState(StateUtils.DefaultVizConfig(), this._onStateChange.bind(this));
-    }
-    
+    this.setState({userEnteredUrl: value}, function() {
+      try {
+        let newUrl = TabUtils.ParseTableauUrl(value, window.document);
+        this.setState(newUrl, this._onStateChange.bind(this));
+      } catch (e) {
+        console.log(e);
+        this.setState(StateUtils.DefaultVizConfig(), this._onStateChange.bind(this));
+      }
+    }.bind(this));
   }
 
   render() {
@@ -60,7 +63,7 @@ class VizConfigurationComponent extends React.Component {
       <div className="vizconfiguration-component"  key='vizconfiguration'>
         <div key='wrapper'>
           <div className='requiredValues' key='requiredValues'>
-            <TextField key='vizUrl' label='Viz Url' required={ true } onChanged={this._urlChanged.bind(this)}/>
+            <TextField key='vizUrl' label='Viz Url' required={ true } onChanged={this._urlChanged.bind(this)} value={this.state.userEnteredUrl} />
             <TextField key='normalizedUrl' label='Normalized Url' disabled={ true } value={this.state.sanitizedUrl} />
           </div>
           <div className='advancedValues' key='advancedValues'>

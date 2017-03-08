@@ -10,8 +10,8 @@ class ToolbarComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    const editItem = {
-      name: 'Change Viz',
+    this.editItem = {
+      name: 'Settings',
       key: 'edit',
       onClick: this._editClicked.bind(this),
       iconProps: {
@@ -25,7 +25,7 @@ class ToolbarComponent extends React.Component {
       onClick: this.props.onResizeToFit
     }
 
-    const saveChanges = {
+    this.saveChanges = {
       name: 'Save Changes',
       key: 'save',
       onClick: this.props.onSaveChanges,
@@ -34,7 +34,7 @@ class ToolbarComponent extends React.Component {
       }
     };
 
-    const infoItem = {
+    this.infoItem = {
       name: 'About',
       key: 'about',
       onClick: this._onInfoClicked.bind(this),
@@ -46,12 +46,11 @@ class ToolbarComponent extends React.Component {
     this.state = {
       showing: false,
       items: [
-        editItem,
-        // resizeItem,
-        saveChanges
+        this.editItem,
+        this.saveChanges
       ],
       rightItems: [
-        infoItem
+        this.infoItem
       ]
     };
 
@@ -92,6 +91,9 @@ class ToolbarComponent extends React.Component {
   }
 
   render() {
+
+    this.saveChanges.disabled = !this.props.hasViz || !this.props.isDirty;
+
     let classNames = 'toolbar-component ';
     classNames += this.state.showing ? 'ms-u-slideUpIn20 show' : 'ms-u-slideDownOut20 hide';
     return (
