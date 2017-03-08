@@ -11,11 +11,26 @@ class ToolbarComponent extends React.Component {
     super(props);
 
     const editItem = {
-      name: 'Edit',
+      name: 'Change Viz',
       key: 'edit',
       onClick: this._editClicked.bind(this),
       iconProps: {
         iconName: 'Edit'
+      }
+    };
+
+    const resizeItem = {
+      name: 'Resize To Fit',
+      key: 'resize',
+      onClick: this.props.onResizeToFit
+    }
+
+    const saveChanges = {
+      name: 'Save Changes',
+      key: 'save',
+      onClick: this.props.onSaveChanges,
+      iconProps: {
+        iconName: 'Save'
       }
     };
 
@@ -31,7 +46,9 @@ class ToolbarComponent extends React.Component {
     this.state = {
       showing: false,
       items: [
-        editItem
+        editItem,
+        // resizeItem,
+        saveChanges
       ],
       rightItems: [
         infoItem
@@ -53,8 +70,6 @@ class ToolbarComponent extends React.Component {
   }
 
   _mouseEvent(isOver, mouseEvent) {
-    console.log('mouseEvent.clientY = ' + mouseEvent.clientY + ' window.innerHeight = ' + window.innerHeight);
-
     if (!isOver) {
       if (!(mouseEvent.clientY >= window.innerHeight || mouseEvent.clientY <= 0 || mouseEvent.clientX >= window.innerWidth || mouseEvent.clientX <= 0)) {
         return;
@@ -68,7 +83,6 @@ class ToolbarComponent extends React.Component {
 
   _editClicked() {
     OfficeUtils.ShowSettings(function() {
-      debugger;
       this.props.onSettingsChangedEdited();
     }.bind(this));
   }

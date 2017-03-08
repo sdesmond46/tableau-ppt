@@ -10,7 +10,7 @@ class FullSizeVizComponent extends React.Component {
     let viz = null;
     const { vizConfig, isEnabled } = this.props;
     if (isEnabled && vizConfig.sanitizedUrl) {
-      viz = <TableauVizReact url={vizConfig.sanitizedUrl} width='100%' height='100%' hideTabs={!vizConfig.showTabs} hideToolbar={!vizConfig.showToolbar}/>
+      viz = <TableauVizReact url={vizConfig.sanitizedUrl} width='100%' height='100%' hideTabs={!vizConfig.showTabs} hideToolbar={!vizConfig.showToolbar} onFirstInteractive={this.props.onFirstInteractive}/>
     }
 
     return viz;
@@ -21,6 +21,8 @@ FullSizeVizComponent.displayName = 'FullSizeVizComponent';
 
 // Uncomment properties you need
 // FullSizeVizComponent.propTypes = {};
-// FullSizeVizComponent.defaultProps = {};
+FullSizeVizComponent.defaultProps = {
+  onFirstInteractive: () => {}
+};
 
 export default FullSizeVizComponent;
