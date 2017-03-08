@@ -12,8 +12,8 @@
   </Hosts>
   <DefaultSettings>
     <SourceLocation DefaultValue="https://localhost:3000/index.html" />
-    <RequestedWidth>700</RequestedWidth>
-    <RequestedHeight>500</RequestedHeight>
+    <RequestedWidth>800</RequestedWidth>
+    <RequestedHeight>600</RequestedHeight>
   </DefaultSettings>
   <Permissions>ReadWriteDocument</Permissions>
 </OfficeApp>
