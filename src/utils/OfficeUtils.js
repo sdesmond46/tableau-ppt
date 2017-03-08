@@ -20,7 +20,7 @@ const LoadSetting = (key) => {
 }
 
 const SaveSetting = (key, val, doneCb) => {
-  const valString = JSON.stringify(val);
+  const valString = (typeof val === 'object') ? JSON.stringify(val) : val;
   if (RunningInOffice()) {
     // Check to see if we are in the dialog, if so we need to pass this message to the parent
     if (Office.context && Office.context.ui && Office.context.ui.messageParent) {
@@ -64,7 +64,10 @@ const ShowSettingsOffice = (cb) => {
           var msg = JSON.parse(msgEvent.message);
           switch(msg.action) {
             case 'saveSetting': {
-              SaveSetting(msg.key, msg.val, (a) => {});
+              SaveSetting(msg.key, msg.val, (a) => {
+                dialog.close();
+                cb();
+              });
               break;
             }
             case 'closeDialog' : {
