@@ -14,7 +14,8 @@ class AppComponent extends React.Component {
     this.state = {
       currentPage : this._getCurrentPage(),
       vizConfig: StateUtils.DefaultVizConfig(),
-      waitingForOffice: true
+      waitingForOffice: true,
+      presenting: false
     }
 
     window.onhashchange = function() {
@@ -43,6 +44,13 @@ class AppComponent extends React.Component {
   }
 
   _doneWaitingForOffice() {
+    if (Office.context.document && Office.context.document.addHandlerAsync) {
+      Office.context.document.addHandlerAsync(Office.EventType.ActiveViewChanged, function(eventArgs) {
+        const isPresenting = eventArgs.activeView === Office.ActiveView.Read;
+        this.setState({ presenting: isPresenting });
+      }.bind(this));
+    }
+
     const vizConfig = OfficeUtils.LoadSetting('vizConfig') || StateUtils.DefaultVizConfig();
     this.setState({
       waitingForOffice: false,
@@ -64,7 +72,7 @@ class AppComponent extends React.Component {
       case 'settings':
         return (<SettingsComponent vizConfig={vizConfig}/>);
       case 'vizContent':
-        return (<VizContentComponent vizConfig={vizConfig} onSettingsChangedEdited={this._doneWaitingForOffice.bind(this)}/>);
+        return (<VizContentComponent vizConfig={vizConfig} onSettingsChangedEdited={this._doneWaitingForOffice.bind(this)} presenting={ this.state.presenting} />);
       default:
         return null;
     }

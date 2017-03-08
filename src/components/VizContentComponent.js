@@ -25,10 +25,15 @@ class VizContentComponent extends React.Component {
   }
 
   render() {
+    // Only show the toolbar if we're not presenting
+    const toolbar = this.props.presenting ? 
+      <ToolbarComponent hasViz={!!this.viz} isDirty={this.state.isDirty} onSettingsChangedEdited={this.props.onSettingsChangedEdited} onResizeToFit={this._onResizeToFit.bind(this)} onSaveChanges={this._onRememberChanges.bind(this)}/> :
+      null;
+      
     return (
       <div className="vizcontent-component">
         <FullSizeVizComponent vizConfig={this.props.vizConfig} isEnabled={true} onFirstInteractive={this._onFirstInteractive.bind(this)} />
-        <ToolbarComponent hasViz={!!this.viz} isDirty={this.state.isDirty} onSettingsChangedEdited={this.props.onSettingsChangedEdited} onResizeToFit={this._onResizeToFit.bind(this)} onSaveChanges={this._onRememberChanges.bind(this)}/>
+        {toolbar}
       </div>
     );
   }
