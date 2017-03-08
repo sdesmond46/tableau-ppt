@@ -64,7 +64,7 @@ class AppComponent extends React.Component {
       case 'settings':
         return (<SettingsComponent vizConfig={vizConfig}/>);
       case 'vizContent':
-        return (<VizContentComponent vizConfig={vizConfig}/>);
+        return (<VizContentComponent vizConfig={vizConfig} onSettingsChangedEdited={this._doneWaitingForOffice.bind(this)}/>);
       default:
         return null;
     }

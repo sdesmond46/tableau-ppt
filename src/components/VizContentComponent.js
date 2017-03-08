@@ -2,6 +2,7 @@
 
 import React from 'react';
 import FullSizeVizComponent from './FullSizeVizComponent';
+import ToolbarComponent from './ToolbarComponent';
 
 require('styles//VizContent.css');
 
@@ -10,6 +11,7 @@ class VizContentComponent extends React.Component {
     return (
       <div className="vizcontent-component">
         <FullSizeVizComponent vizConfig={this.props.vizConfig} isEnabled={true} />
+        <ToolbarComponent onSettingsChangedEdited={this.props.onSettingsChangedEdited} />
       </div>
     );
   }
@@ -19,7 +21,8 @@ VizContentComponent.displayName = 'VizContentComponent';
 
 // Uncomment properties you need
 VizContentComponent.propTypes = {
-  vizConfig: React.PropTypes.object.isRequired
+  vizConfig: React.PropTypes.object.isRequired,
+  onSettingsChangedEdited: React.PropTypes.func.isRequired
 };
 // VizContentComponent.defaultProps = {};
 
