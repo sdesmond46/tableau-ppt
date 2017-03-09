@@ -52,7 +52,7 @@ class VizConfigurationComponent extends React.Component {
         let newUrl = TabUtils.ParseTableauUrl(value, window.document);
         this.setState(newUrl, this._onStateChange.bind(this));
       } catch (e) {
-        console.log(e);
+        // TODO - report the error to the user
         this.setState(StateUtils.DefaultVizConfig(), this._onStateChange.bind(this));
       }
     }.bind(this));
@@ -93,7 +93,7 @@ VizConfigurationComponent.displayName = 'VizConfigurationComponent';
 // VizConfigurationComponent.propTypes = {};
 VizConfigurationComponent.defaultProps = {
   vizConfig: StateUtils.DefaultVizConfig(),
-  configChanged : (newConfig) => {}
+  configChanged : () => {}
 };
 
 export default VizConfigurationComponent;

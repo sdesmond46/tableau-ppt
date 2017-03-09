@@ -26,7 +26,7 @@ class VizContentComponent extends React.Component {
 
   render() {
     // Only show the toolbar if we're not presenting
-    const toolbar = !this.props.presenting ? 
+    const toolbar = !this.props.presenting ?
       <ToolbarComponent vizConfig={this.props.vizConfig} hasViz={!!this.viz} isDirty={this.state.isDirty} onSettingsChangedEdited={this.props.onSettingsChangedEdited} onResizeToFit={this._onResizeToFit.bind(this)} onSaveChanges={this._onRememberChanges.bind(this)}/> :
       null;
 
@@ -83,7 +83,7 @@ class VizContentComponent extends React.Component {
     this._configureEventListeners(false);
   }
 
-  _vizEdited(vizEvent) {
+  _vizEdited() {
     this.setState(
       { isDirty: true }
     )
@@ -95,7 +95,7 @@ class VizContentComponent extends React.Component {
       this.viz.getWorkbook().rememberCustomViewAsync(viewName).then((customView) => {
         const viewUrl = customView.getUrl();
         const parsedUrl = TabUtils.ParseTableauUrl(viewUrl, window.document);
-        const newVizConfig = Object.assign({}, this.props.vizConfig, { 
+        const newVizConfig = Object.assign({}, this.props.vizConfig, {
           customView: parsedUrl.customView,
           sanitizedUrl: parsedUrl.sanitizedUrl
         });

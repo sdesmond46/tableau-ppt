@@ -7,6 +7,8 @@ import VizContentComponent from './VizContentComponent';
 import * as StateUtils from '../utils/StateUtils';
 import * as OfficeUtils from '../utils/OfficeUtils';
 
+/*global Office:true*/
+
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);

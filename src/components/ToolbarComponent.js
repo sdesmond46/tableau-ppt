@@ -24,12 +24,6 @@ class ToolbarComponent extends React.Component {
       }
     };
 
-    const resizeItem = {
-      name: 'Resize To Fit',
-      key: 'resize',
-      onClick: this.props.onResizeToFit
-    }
-
     this.saveChanges = {
       name: 'Save Changes',
       key: 'save',

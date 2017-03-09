@@ -2,6 +2,8 @@ import React from 'react';
 import * as TabUtils from './TableauUtils.js';
 import postscribe from 'postscribe';
 
+/*global tableau:true*/
+
 class TableauVizReact extends React.Component {
 constructor(props) {
 		super(props);
@@ -20,7 +22,7 @@ constructor(props) {
 		// Use postscribe to write in the tableau js library. It is MAGIC
 		postscribe('#vizContainer', '<script src="' + baseJsApiUrl + '"><\/script>', {
 			done: function() {
-				this._tryInitViz(this.props.url); 
+				this._tryInitViz(this.props.url);
 			}.bind(this), error: function() {
 				// TODO
 			}.bind(this)

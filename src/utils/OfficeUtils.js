@@ -1,5 +1,7 @@
 import * as Cookies from 'cookies-js';
 
+/*global Office:true*/
+
 const RunningInOffice = () => {
   const val = Cookies.get('mockOffice');
   return !val;
@@ -26,7 +28,6 @@ const LoadSetting = (key) => {
 
 const SaveSetting = (key, val, doneCb) => {
   const valString = (typeof val === 'object') ? JSON.stringify(val) : val;
-  const msg = JSON.stringify({action: 'saveSetting', key: key, val: valString});
   if (RunningInOffice()) {
     let settings = Office.context.document.settings;
     settings.set(key, valString);
@@ -37,13 +38,19 @@ const SaveSetting = (key, val, doneCb) => {
   }
 }
 
+const MakeUrl = (target) => {
+  target = target || '';
+  const result = window.location.protocol + '//' + window.location.host + window.location.pathname + '#' + target;
+  return result;
+}
+
 const CloseDialog = () => {
-  const homeUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "#";
+  const homeUrl = MakeUrl();
   window.location.href = homeUrl;
 }
 
-const ShowSettings = (cb) => {
-  const settingsUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "#settings";
+const ShowSettings = () => {
+  const settingsUrl = MakeUrl('#settings');
   window.location.href = settingsUrl;
 }
 
