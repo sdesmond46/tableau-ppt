@@ -27,7 +27,7 @@ class VizContentComponent extends React.Component {
   render() {
     // Only show the toolbar if we're not presenting
     const toolbar = !this.props.presenting ? 
-      <ToolbarComponent hasViz={!!this.viz} isDirty={this.state.isDirty} onSettingsChangedEdited={this.props.onSettingsChangedEdited} onResizeToFit={this._onResizeToFit.bind(this)} onSaveChanges={this._onRememberChanges.bind(this)}/> :
+      <ToolbarComponent vizConfig={this.props.vizConfig} hasViz={!!this.viz} isDirty={this.state.isDirty} onSettingsChangedEdited={this.props.onSettingsChangedEdited} onResizeToFit={this._onResizeToFit.bind(this)} onSaveChanges={this._onRememberChanges.bind(this)}/> :
       null;
 
     return (
@@ -84,7 +84,6 @@ class VizContentComponent extends React.Component {
   }
 
   _vizEdited(vizEvent) {
-    debugger;
     this.setState(
       { isDirty: true }
     )

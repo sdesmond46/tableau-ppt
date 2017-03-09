@@ -31,11 +31,11 @@ body {
 .configuration {
   width: 40%;
   overflow: auto;
+  resize: auto;
 }
 
 .preview {
   width: calc(60% - 1px);
-  /*overflow: auto;*/
 }
 
 .divider {

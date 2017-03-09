@@ -2,7 +2,12 @@
 
 import React from 'react';
 import { CommandBar } from 'office-ui-fabric-react/lib-amd/CommandBar';
+// import { Button } from 'office-ui-fabric-react/lib-amd/Button';
+import { Callout, DirectionalHint  } from 'office-ui-fabric-react/lib-amd/Callout';
+import { Link } from 'office-ui-fabric-react/lib-amd/Link';
 import * as OfficeUtils from '../utils/OfficeUtils';
+import * as StateUtils from '../utils/StateUtils';
+
 
 require('styles//Toolbar.css');
 
@@ -87,18 +92,70 @@ class ToolbarComponent extends React.Component {
   }
 
   _onInfoClicked() {
+    this.setState({
+      isCalloutVisible: !this.state.isCalloutVisible
+    });
+  }
 
+  _onCalloutDismissed() {
+    this.setState({
+      isCalloutVisible: false
+    });
+  }
+
+  _getVizInfo() {
+    if (!this.props.vizConfig) {
+      return null;
+    }
+
+    let results = [];
+    for (let i = 0; i < StateUtils.advancedProps.length; i++) {
+      const line = (
+        <div key={StateUtils.advancedProps[i]}>
+          <span className='ms-fontWeight-semibold'>{StateUtils.advancedPropNames[i] + ': '}</span>{this.props.vizConfig[StateUtils.advancedProps[i]]}
+        </div>);
+      
+      results.push(line);
+    }
+
+    return results;
   }
 
   render() {
-
     this.saveChanges.disabled = !this.props.hasViz || !this.props.isDirty;
+
+    const calloutTarget = document.querySelector('[aria-label="About"]');
+    const callout = this.state.showing && this.state.isCalloutVisible ? (
+      <Callout
+        directionalHint={DirectionalHint.topRightEdge}
+        className='callout-wrapper'
+        gapSpace={ 0 }
+        targetElement={calloutTarget}
+        onDismiss={ this._onCalloutDismissed.bind(this) }
+        setInitialFocus={ true }
+      >
+        <div>
+          <p className='ms-font-m-plus'>
+            Viz Info
+          </p>
+        </div>
+        <div>
+          <div className='ms-font-s'>
+            {this._getVizInfo()}
+          </div>
+          <br />
+          <div>
+            <Link target='_blank' href='http://tableau.com'>Documentation</Link>
+          </div>
+        </div>
+      </Callout>) : null;
 
     let classNames = 'toolbar-component ';
     classNames += this.state.showing ? 'ms-u-slideUpIn20 show' : 'ms-u-slideDownOut20 hide';
     return (
       <div className={classNames}>
-        <CommandBar isSearchBoxVisible={false} items={this.state.items} farItems={this.state.rightItems}/>
+        <CommandBar id='commandBar' isSearchBoxVisible={false} items={this.state.items} farItems={this.state.rightItems}/>
+        {callout}
       </div>
     );
   }

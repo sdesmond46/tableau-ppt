@@ -44,7 +44,7 @@ class AppComponent extends React.Component {
   }
 
   _doneWaitingForOffice() {
-    if (Office.context.document && Office.context.document.addHandlerAsync) {
+    if (Office.context && Office.context.document && Office.context.document.addHandlerAsync) {
       Office.context.document.addHandlerAsync(Office.EventType.ActiveViewChanged, function(eventArgs) {
         const isPresenting = eventArgs.activeView === Office.ActiveView.Read;
         this.setState({ presenting: isPresenting });

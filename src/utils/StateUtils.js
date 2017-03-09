@@ -1,4 +1,6 @@
 const vizConfigProps = ['sanitizedUrl' , 'server' , 'site' , 'workbook' , 'view' , 'customView' , 'showTabs' , 'showToolbar'];
+const advancedProps = ['server' , 'site' , 'workbook' , 'view' , 'customView'];
+const advancedPropNames = ['Server' , 'Site' , 'Workbook' , 'View' , 'Custom View'];
 
 const ValidateVizConfig = (vizConfig) => {
   // Really the only thing that matters is we have a valid sanitizedUrl
@@ -28,4 +30,5 @@ const DefaultVizConfig = () => {
   };
 }
 
-export { ValidateVizConfig, TakeVizConfigProps, DefaultVizConfig }
+
+export { ValidateVizConfig, TakeVizConfigProps, DefaultVizConfig, advancedProps, advancedPropNames }

@@ -13,3 +13,10 @@
 .show {
   opacity: 1
 }
+
+.ms-Callout-main {
+  overflow: hidden;
+  padding-left: 8px;
+  padding-bottom: 8px;
+  padding-right: 8px;
+}

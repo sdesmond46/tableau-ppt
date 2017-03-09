@@ -59,19 +59,23 @@ class VizConfigurationComponent extends React.Component {
   }
 
   render() {
+    // Don't bother with the advanced options for now
+    // const advancedSection = (
+    //   <div className='advancedValues' key='advancedValues'>
+    //     {this._makeTextField('Server', 'server')}
+    //     {this._makeTextField('Site', 'site')}
+    //     {this._makeTextField('Workbook', 'workbook')}
+    //     {this._makeTextField('View', 'view')}
+    //     {this._makeTextField('Custom View', 'customView')}
+    //   </div>
+    // );
+
     return (
       <div className="vizconfiguration-component"  key='vizconfiguration'>
         <div key='wrapper'>
           <div className='requiredValues' key='requiredValues'>
             <TextField key='vizUrl' label='Viz Url' required={ true } onChanged={this._urlChanged.bind(this)} value={this.state.userEnteredUrl} />
             <TextField key='normalizedUrl' label='Normalized Url' disabled={ true } value={this.state.sanitizedUrl} />
-          </div>
-          <div className='advancedValues' key='advancedValues'>
-            {this._makeTextField('Server', 'server')}
-            {this._makeTextField('Site', 'site')}
-            {this._makeTextField('Workbook', 'workbook')}
-            {this._makeTextField('View', 'view')}
-            {this._makeTextField('Custom View', 'customView')}
           </div>
           <div className='displayOptions' key='displayOptions'>
             {this._makeCheckbox('Show Tabs', 'showTabs')}
