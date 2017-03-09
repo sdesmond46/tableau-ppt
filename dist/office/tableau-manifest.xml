@@ -11,7 +11,8 @@
     <Host Name="Presentation" />
   </Hosts>
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://localhost:3000/index.html" />
+    <!--<SourceLocation DefaultValue="https://localhost:3000/index.html" />-->
+    <SourceLocation DefaultValue="https://tableauppt.blob.core.windows.net/addin/index.html" />
     <RequestedWidth>800</RequestedWidth>
     <RequestedHeight>600</RequestedHeight>
   </DefaultSettings>
