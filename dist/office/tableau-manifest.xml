@@ -12,7 +12,7 @@
   </Hosts>
   <DefaultSettings>
     <!--<SourceLocation DefaultValue="https://localhost:3000/index.html" />-->
-    <SourceLocation DefaultValue="https://tableauppt.blob.core.windows.net/addin/index.html" />
+    <SourceLocation DefaultValue="https://sdesmond46.github.io/tableau-ppt/dist/index.html" />
     <RequestedWidth>800</RequestedWidth>
     <RequestedHeight>600</RequestedHeight>
   </DefaultSettings>
