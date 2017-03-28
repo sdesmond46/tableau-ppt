@@ -1,6 +1,6 @@
 # Tableau PowerPoint Add-In
 
-This add in gives the ability to embed a Tableau Viz inside of a PowerPoint document. Currently, the add-in is not published to the Office Store, but you can still try it out locally. The html and javsacript for the add-in is hosted from this Github Repository via GitHub pages. The main page is located [here](https://sdesmond46.github.io/tableau-ppt/dist/index.html).
+This add in gives the ability to embed a Tableau Viz inside of a PowerPoint document. Currently, the add-in is not published to the Office Store, but you can still try it out locally. The html and javsacript for the add-in is hosted from this Github Repository via GitHub pages. The main page is located [here (it won't do anything outside of PowerPoint)](https://sdesmond46.github.io/tableau-ppt/dist/index.html).
 
 If you are a SharePoint Administrator, you can add the add-in to your organization's list of add-ins (See [here](https://dev.office.com/docs/add-ins/publish/publish-task-pane-and-content-add-ins-to-an-add-in-catalog)). This will give the best experience since the add-in should work across all platforms.
 
